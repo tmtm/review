@@ -184,6 +184,7 @@ module ReVIEW
     definline :dtp
     definline :code
     definline :bib
+    definline :hdref
     definline :hd
     definline :href
     definline :recipe

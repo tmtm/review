@@ -925,6 +925,15 @@ QUOTE
       end
     end
 
+    def inline_hdref_chap(chap, label)
+      hd = chap.headline_by_label(label)
+      if ReVIEW.book.param["chapterlink"]
+        %Q(<a href="#{chap.id}.html\##{label}">#{inline_hd_chap(chap, hd.id)}</a>)
+      else
+        inline_hd_chap(chap, hd.id)
+      end
+    end
+
     def inline_list(id)
       chapter, id = extract_chapter_id(id)
       if get_chap(chapter).nil?

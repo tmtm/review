@@ -294,7 +294,7 @@ module ReVIEW
     end
 
     class HeadlineIndex < Index
-      Item = Struct.new(:id, :number, :caption)
+      Item = Struct.new(:id, :number, :caption, :label)
 
       def HeadlineIndex.parse(src, chap)
         items = []
@@ -314,7 +314,7 @@ module ReVIEW
               end
               indexs[index] += 1
               headlines[index] = m[4].strip
-              items.push Item.new(headlines.join("|"), indexs.dup, m[4].strip)
+              items.push Item.new(headlines.join("|"), indexs.dup, m[4].strip, m[3])
             end
           end
         end
@@ -325,14 +325,22 @@ module ReVIEW
         @items = items
         @chap = chap
         @index = {}
+        @label = {}
         items.each do |i|
           warn "warning: duplicate ID: #{i.id}" unless @index[i.id].nil?
           @index[i.id] = i
+          warn "warning: duplicate label: #{i.label}" unless @index[i.label].nil?
+          @label[i.label] = i
         end
       end
 
       def number(id)
         return ([@chap.number] + @index.fetch(id).number).join(".")
+      end
+
+      def by_label(label)
+        raise "warning: unknown label: #{label}" unless @label[label]
+        return @label[label]
       end
     end
   end
