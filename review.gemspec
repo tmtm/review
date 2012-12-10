@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "review"
-  s.version = "1.0.0"
+  s.version = "1.0.0.tmtms1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kmuto", "takahashim"]
-  s.date = "2012-10-03"
+  s.date = "2012-12-10"
   s.description = "ReVIEW is a digital publishing system for books and ebooks. It supports InDesign, EPUB and LaTeX."
   s.email = "kmuto@debian.org"
   s.executables = ["review-check", "review-checkdep", "review-compile", "review-epubmaker", "review-epubmaker-ng", "review-index", "review-pdfmaker", "review-preproc", "review-validate", "review-vol"]
