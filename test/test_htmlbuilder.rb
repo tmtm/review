@@ -226,6 +226,16 @@ class HTMLBuidlerTest < Test::Unit::TestCase
     assert_equal %Q|test 「1.1.1 te_st」 test2|, actual
   end
 
+  def test_inline_hdref
+    def @chapter.headline_index
+      items = [Book::HeadlineIndex::Item.new("chap1|test", [1, 1], "te_st", "label")]
+      Book::HeadlineIndex.new(items, self)
+    end
+
+    ret = @builder.compile_inline("test @<hdref>{label} test2")
+    assert_equal %Q|test 「te_st」 test2|, ret
+  end
+
   def test_inline_uchar
     actual = compile_inline("test @<uchar>{2460} test2")
     assert_equal %Q|test &#x2460; test2|, actual

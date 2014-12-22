@@ -280,6 +280,13 @@ module ReVIEW
       puts ""
     end
 
+    def inline_hdref(label)
+      m = /\A(\w+)\|(.+)/.match(label)
+      chapter = @book.chapters.detect{|chap| chap.id == m[1]} if m && m[1]
+      return inline_hdref_chap(chapter, m[2]) if chapter
+      return inline_hdref_chap(@chapter, label)
+    end
+
     def inline_hd(id)
       m = /\A([^|]+)\|(.+)/.match(id)
       chapter = @book.chapters.detect{|chap| chap.id == m[1]} if m && m[1]

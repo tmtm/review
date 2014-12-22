@@ -165,6 +165,10 @@ module ReVIEW
         @headline_index ||= HeadlineIndex.parse(lines(), self)
       end
 
+      def headline_by_label(label)
+        headline_index.by_label(label)
+      end
+
       def column(id)
         column_index()[id]
       end
